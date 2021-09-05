@@ -18,5 +18,6 @@ from . import views
 
 urlpatterns = [
     path('', views.home),
+    path('archive/', views.archive),
     path('article/<int:id>/', views.article)
 ]

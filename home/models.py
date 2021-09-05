@@ -13,5 +13,9 @@ class Article(BaseModel.Base):
     def __str__(self):
         return self.title
 
+    def day(self):
+
+        return self.create_time.day
+
     # class Meta:
     #     db_table = '文章'
