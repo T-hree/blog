@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="{% static 'bootstrap-3.4.1/dist/css/bootstrap.min.css' %}">
+    <script src="{% static 'jQuery.js' %}"></script>
+    <script src="{% static 'bootstrap-3.4.1/dist/js/bootstrap.min.js' %}"></script>
     <style>
         body {
             margin: 0;
@@ -19,22 +21,17 @@
             position: fixed;
             top: 0;
             left: 0;
-        {#这三句是让整个div固定在屏幕的最上方和最左方#}
-            width: 100%;
+        {#这三句是让整个div固定在屏幕的最上方和最左方#} width: 100%;
             height: 100%;
             min-width: 1000px;
         {#上面前两句是让整个div跟屏幕大小一样，从而达到全屏效果。而min-width是为了实现让屏幕宽度在1000px以内时，div的大小保持不变，也就是图片不缩放。#} z-index: -10;
         {#这个的目的是让整个div在HTML页面中各个层级的下方，正常情况下，默认创建的层级z-index的值是0，所以如果我们这里写成-1也可以实现，不过这里写-10是确保整个div在最下面，因为如果页面中层级太多了，有的时候用-1不一定在最下面，但如果写成-100这样大数字的也没有什么意义。用-10 以此能达到看上去像背景图片，其实是一个最普通的div，只是层级关系变了，才让人看上去看是背景图片。#} zoom: 1;
-        {#zoom是CSS hack中专对IE6起作用的部分。IE6浏览器会执行zoom:1表示对象的缩放比例。兼容IE6、IE7、IE8浏览器，经常会遇到一些问题，可以使用zoom:1来解决，zoom有如下作用：1.触发IE浏览器的haslayout； 2.解决ie下的浮动，margin重叠等一些问题。 #}{#background-color: #fff;#}
-            background-repeat: no-repeat;
-        {#图片平铺，不重复#}
-            background-size: cover;
+        {#zoom是CSS hack中专对IE6起作用的部分。IE6浏览器会执行zoom:1表示对象的缩放比例。兼容IE6、IE7、IE8浏览器，经常会遇到一些问题，可以使用zoom:1来解决，zoom有如下作用：1.触发IE浏览器的haslayout； 2.解决ie下的浮动，margin重叠等一些问题。 #}{#background-color: #fff;#} background-repeat: no-repeat;
+        {#图片平铺，不重复#} background-size: cover;
             -webkit-background-size: cover;
             -o-background-size: cover;
-        {#上面三句是一个意思，就是让图片随屏幕大小同步缩放，但是有部分可能会被裁切，不过不至于会露白，下面两句是为chrome和opera浏览器作兼容。#}
-            background-position: center 0;
-        {#上面这句的意思就是图片的位置，居中，靠左对齐#}
-            background-image: url({% static 'img/7f128d49c8834d73a4d9b1d669ebd070.jpg' %});
+        {#上面三句是一个意思，就是让图片随屏幕大小同步缩放，但是有部分可能会被裁切，不过不至于会露白，下面两句是为chrome和opera浏览器作兼容。#} background-position: center 0;
+        {#上面这句的意思就是图片的位置，居中，靠左对齐#} background-image: url({% static 'img/7f128d49c8834d73a4d9b1d669ebd070.jpg' %});
         }
 
     </style>
@@ -59,7 +56,7 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="/home">首页 <span class="sr-only">(current)</span></a></li>
+                    <li class="active"><a href="/home">首页</a></li>
                     <li><a href="/home/archive/">归档</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"

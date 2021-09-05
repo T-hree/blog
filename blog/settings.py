@@ -132,3 +132,15 @@ STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
 
 SHOW_ARTICLE_NUM = 6
 
+# redis
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://47.106.86.25:6379',
+
+        "OPTIONS": {
+            'PASSWORD': '1234',
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        },
+    },
+}

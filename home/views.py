@@ -6,16 +6,18 @@ import markdown
 from django.db.models import Count
 from django.db.models.functions import ExtractMonth, ExtractYear
 from django.conf import settings
+from django.core.cache import cache
+from django_redis import get_redis_connection
 
 
 # Create your views here.
 def home(request):
-
     return render(request, 'home.html')
 
 
 def archive(request):
     start = time.time()
+
     year_month_count = models.Article.objects.annotate(year=ExtractYear('create_time'),
                                                        month=ExtractMonth('create_time')) \
         .values('year', 'month').order_by('year', 'month').annotate(count=Count('id')).order_by('-month')
@@ -37,10 +39,11 @@ def archive(request):
 
 
 def article(request, id):
-    start = time.time()
     obj = models.Article.objects.filter(id=id).first()
-
+    con = get_redis_connection("default")
+    con.hincrby('test', id, 1)
     md = markdown.Markdown(extensions=['markdown.extensions.extra', 'markdown.extensions.codehilite'])
     context = md.convert(obj.context)
-    print(start - time.time())
-    return render(request, 'article.html', context={'context': context, 'title': obj.title})
+    num = con.hget('test', id).decode()
+
+    return render(request, 'article.html', locals())
