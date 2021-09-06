@@ -1,18 +1,35 @@
 {% extends 'base.html' %}
 {% load  static %}
+{% block title %}
+    {{ obj.title }}
+{% endblock %}
 {% block css %}
     <link rel="stylesheet" href="{% static 'md_css/pygments.css' %}">
-    <script src="{% static 'bootstrap-3.4.1/dist/js/bootstrap.min.js' %}"></script>
+    <style>
+        pre {
+            display: block;
+            padding: 9.5px;
+            margin: 0 0 10px;
+            font-size: 13px;
+            line-height: 1.42857143;
+            color: #333;
+            word-break: break-all;
+            word-wrap: break-word;
+            background-color: #0f0f0f;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
 {% endblock %}
 {% block content %}
-    <div class="panel panel-default">
+    <div class="panel panel-info">
         <div class="panel-heading">
             <div style="float:left">{{ obj.title }}</div>
             <div style="float:right">浏览次数：{{ num }}</div>
             <div style="clear:both" ¬></div>
         </div>
         <div class="panel-body">
-            {{ context|safe }}
+            <div>{{ context|safe }}</div>
         </div>
     </div>
 

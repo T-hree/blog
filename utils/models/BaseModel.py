@@ -7,4 +7,4 @@ class Base(models.Model):
     update_time = models.DateTimeField(auto_now=True, verbose_name='修改时间')
 
     class Meta:
-        abstract = True
+        abstract = True  # 作为基表  不进行映射迁移
